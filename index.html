@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PowerAutomation + ClaudEditor - 革命性AI驱动开发平台，集成6大AI生态系统，14种专业开发工具，实现智能协作开发">
+    <meta name="keywords" content="AI开发平台,智能代码编辑器,AI协作,MCP工具,多模型协同,自动化测试,AG-UI">
+    <title>PowerAutomation + ClaudEditor - 革命性AI协作开发平台 (AG-UI版本)</title>
+    
+    <!-- AG-UI Meta Tags -->
+    <meta name="agui-version" content="4.0">
+    <meta name="agui-framework" content="PowerAutomation">
+    <meta name="agui-generated" content="2025-07-09T05:00:10.192783">
+    
+    <style>
+        /* AG-UI基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            line-height: 1.6;
+            color: oklch(0.145 0 0);
+            background: oklch(1 0 0);
+            min-height: 100vh;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* AG-UI导航栏组件 */
+        .agui-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, oklch(0.546 0.245 262.881) 0%, oklch(0.558 0.288 302.321) 50%, oklch(0.511 0.262 276.966) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .features-link {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: white;
+        }
+        
+        .demos-link {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+        
+        .pricing-link {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .contact-link {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+        
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* AG-UI英雄区域组件 */
+        .agui-hero {
+            padding: 120px 2rem 80px;
+            text-align: center;
+            background: oklch(1 0 0);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, oklch(0.546 0.245 262.881) 0%, oklch(0.558 0.288 302.321) 50%, oklch(0.511 0.262 276.966) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 30px;
+            font-weight: 600;
+            color: oklch(0.372 0.044 257.287);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-description {
+            font-size: 20px;
+            color: oklch(0.145 0 0);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card:nth-child(1) {
+            border-left: 4px solid #4ade80;
+        }
+        
+        .stat-card:nth-child(2) {
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .stat-card:nth-child(3) {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .stat-card:nth-child(4) {
+            border-left: 4px solid #8b5cf6;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: oklch(0.145 0 0);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: oklch(0.372 0.044 257.287);
+        }
+        
+        /* AG-UI演示卡片组件 */
+        .agui-demo-cards {
+            padding: 80px 2rem;
+            background: oklch(1 0 0);
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: oklch(0.145 0 0);
+            margin-bottom: 3rem;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .demo-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .demo-card.featured {
+            border: 2px solid #3b82f6;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(29, 78, 216, 0.05));
+        }
+        
+        .demo-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: oklch(0.145 0 0);
+            margin-bottom: 1rem;
+        }
+        
+        .demo-description {
+            color: oklch(0.372 0.044 257.287);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .demo-button {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* AG-UI视频模态框组件 */
+        .agui-video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .agui-video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+        
+        .modal-video {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            max-height: 600px;
+            display: block;
+        }
+        
+        /* AG-UI动画效果 */
+        .agui-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .agui-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-link {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 24px;
+            }
+            
+            .hero-description {
+                font-size: 18px;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .stat-card {
+                padding: 1.5rem;
+            }
+            
+            .demo-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .demo-card {
+                padding: 1.5rem;
+            }
+            
+            .modal-content {
+                max-width: 95vw;
+                max-height: 80vh;
+            }
+            
+            .modal-video {
+                max-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body data-agui-app="powerautomation" data-agui-version="4.0">
+    
+    <!-- AG-UI导航栏组件 -->
+    <nav class="agui-navbar" data-agui-component="navigation" data-agui-version="4.0">
+        <div class="navbar-container">
+            <div class="logo">
+                <span class="logo-text">PowerAutomation</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link features-link" data-agui-action="scroll-to">功能特性</a>
+                <a href="#demos" class="nav-link demos-link" data-agui-action="scroll-to">演示视频</a>
+                <a href="#pricing" class="nav-link pricing-link" data-agui-action="scroll-to">版本对比</a>
+                <a href="#contact" class="nav-link contact-link" data-agui-action="scroll-to">联系我们</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- AG-UI英雄区域组件 -->
+    <section class="agui-hero" data-agui-component="hero" data-agui-version="4.0" id="hero">
+        <div class="hero-container">
+            <h1 class="hero-title agui-fade-in" data-agui-element="main-title">PowerAutomation</h1>
+            <h2 class="hero-subtitle agui-fade-in" data-agui-element="subtitle">革命性AI驱动开发平台</h2>
+            <p class="hero-description agui-fade-in" data-agui-element="description">
+                集成6大AI生态系统，14种专业开发工具，实现智能协作开发
+            </p>
+            <div class="hero-stats agui-fade-in" data-agui-element="stats-grid">
+                <div class="stat-card" data-agui-element="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">AI生态系统</div>
+                </div>
+                <div class="stat-card" data-agui-element="stat-item">
+                    <div class="stat-number">14</div>
+                    <div class="stat-label">专业工具</div>
+                </div>
+                <div class="stat-card" data-agui-element="stat-item">
+                    <div class="stat-number">49.11%</div>
+                    <div class="stat-label">效率提升</div>
+                </div>
+                <div class="stat-card" data-agui-element="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">智能协作</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AG-UI演示卡片组件 -->
+    <section class="agui-demo-cards" data-agui-component="demo-cards" data-agui-version="4.0" id="demos">
+        <div class="demo-container">
+            <h2 class="section-title agui-fade-in" data-agui-element="section-title">核心功能演示</h2>
+            <div class="demo-grid agui-fade-in" data-agui-element="demo-grid">
+                <div class="demo-card" data-agui-element="demo-card" data-demo-type="smartui">
+                    <div class="demo-icon">🧠</div>
+                    <h3 class="demo-title">SmartUI + MemoryOS</h3>
+                    <p class="demo-description">智能界面与长期记忆系统</p>
+                    <button class="demo-button" data-agui-action="play-video" data-video="tc_demo_001_recorded.mp4">
+                        观看演示
+                    </button>
+                </div>
+                
+                <div class="demo-card" data-agui-element="demo-card" data-demo-type="mcp">
+                    <div class="demo-icon">🔧</div>
+                    <h3 class="demo-title">MCP工具发现</h3>
+                    <p class="demo-description">智能工具发现和推荐</p>
+                    <button class="demo-button" data-agui-action="play-video" data-video="tc_demo_002.mp4">
+                        观看演示
+                    </button>
+                </div>
+                
+                <div class="demo-card" data-agui-element="demo-card" data-demo-type="multimodel">
+                    <div class="demo-icon">🤖</div>
+                    <h3 class="demo-title">端云多模型协同</h3>
+                    <p class="demo-description">Claude + Gemini智能切换</p>
+                    <button class="demo-button" data-agui-action="play-video" data-video="tc_demo_003.mp4">
+                        观看演示
+                    </button>
+                </div>
+                
+                <div class="demo-card featured" data-agui-element="demo-card" data-demo-type="e2e">
+                    <div class="demo-icon">🎯</div>
+                    <h3 class="demo-title">端到端自动化测试</h3>
+                    <p class="demo-description">Stagewise MCP测试录制</p>
+                    <button class="demo-button" data-agui-action="play-video" data-video="tc_demo_004.mp4">
+                        观看演示
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AG-UI视频模态框组件 -->
+    <div class="agui-video-modal" data-agui-component="video-modal" data-agui-version="4.0" id="videoModal">
+        <div class="modal-overlay" data-agui-element="modal-overlay">
+            <div class="modal-content" data-agui-element="modal-content">
+                <button class="modal-close" data-agui-action="close-modal" data-agui-element="close-button">&times;</button>
+                <video class="modal-video" data-agui-element="video-player" controls>
+                    <source src="" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AG-UI系统初始化脚本 -->
+    <script>
+        // AG-UI系统核心类
+        class AGUISystem {
+            constructor() {
+                this.version = "4.0";
+                this.components = new Map();
+                this.events = new Map();
+                this.analytics = {
+                    events: [],
+                    track: (eventName, data) => {
+                        this.analytics.events.push({
+                            event: eventName,
+                            data: data,
+                            timestamp: new Date().toISOString()
+                        });
+                        console.log(`[AG-UI Analytics] ${eventName}:`, data);
+                    }
+                };
+                this.init();
+            }
+            
+            init() {
+                console.log(`[AG-UI] PowerAutomation AG-UI系统 v${this.version} 初始化中...`);
+                
+                // 注册所有AG-UI组件
+                this.registerComponents();
+                
+                // 初始化事件系统
+                this.initEventSystem();
+                
+                // 初始化滚动动画
+                this.initScrollAnimations();
+                
+                // 初始化视频模态框
+                this.initVideoModal();
+                
+                console.log(`[AG-UI] 系统初始化完成，已注册 ${this.components.size} 个组件`);
+                this.analytics.track('agui_system_initialized', {
+                    version: this.version,
+                    components: this.components.size
+                });
+            }
+            
+            registerComponents() {
+                const components = document.querySelectorAll('[data-agui-component]');
+                components.forEach(component => {
+                    const type = component.getAttribute('data-agui-component');
+                    const id = component.id || `agui-${type}-${Date.now()}`;
+                    this.components.set(id, {
+                        element: component,
+                        type: type,
+                        version: component.getAttribute('data-agui-version') || this.version
+                    });
+                });
+            }
+            
+            initEventSystem() {
+                // 平滑滚动导航
+                document.addEventListener('click', (e) => {
+                    if (e.target.hasAttribute('data-agui-action') && 
+                        e.target.getAttribute('data-agui-action') === 'scroll-to') {
+                        e.preventDefault();
+                        const target = e.target.getAttribute('href');
+                        if (target) {
+                            const element = document.querySelector(target);
+                            if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                                this.analytics.track('navigation_click', { target: target });
+                            }
+                        }
+                    }
+                });
+            }
+            
+            initScrollAnimations() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            this.analytics.track('element_visible', {
+                                element: entry.target.getAttribute('data-agui-element') || 'unknown'
+                            });
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                // 为所有AG-UI元素添加淡入动画
+                document.querySelectorAll('.agui-fade-in').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+            
+            initVideoModal() {
+                this.modal = document.getElementById('videoModal');
+                this.video = this.modal.querySelector('.modal-video source');
+                this.videoElement = this.modal.querySelector('.modal-video');
+                this.closeButton = this.modal.querySelector('.modal-close');
+                this.overlay = this.modal.querySelector('.modal-overlay');
+                
+                // 演示按钮点击事件
+                document.addEventListener('click', (e) => {
+                    if (e.target.hasAttribute('data-agui-action') && 
+                        e.target.getAttribute('data-agui-action') === 'play-video') {
+                        const videoSrc = e.target.getAttribute('data-video');
+                        this.openVideoModal(videoSrc);
+                    }
+                });
+                
+                // 关闭按钮
+                this.closeButton.addEventListener('click', () => this.closeVideoModal());
+                
+                // 点击遮罩关闭
+                this.overlay.addEventListener('click', (e) => {
+                    if (e.target === this.overlay) {
+                        this.closeVideoModal();
+                    }
+                });
+                
+                // ESC键关闭
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                        this.closeVideoModal();
+                    }
+                });
+            }
+            
+            openVideoModal(videoSrc) {
+                this.video.src = `videos/${videoSrc}`;
+                this.videoElement.load();
+                this.modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                this.analytics.track('video_modal_opened', { video: videoSrc });
+            }
+            
+            closeVideoModal() {
+                this.modal.classList.remove('active');
+                this.videoElement.pause();
+                this.video.src = '';
+                document.body.style.overflow = '';
+                
+                this.analytics.track('video_modal_closed');
+            }
+            
+            // AG-UI组件API
+            getComponent(id) {
+                return this.components.get(id);
+            }
+            
+            getAllComponents() {
+                return Array.from(this.components.values());
+            }
+            
+            getAnalytics() {
+                return this.analytics.events;
+            }
+        }
+        
+        // 全局AG-UI实例
+        window.agui = new AGUISystem();
+        
+        // 页面加载完成后的性能监控
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`[AG-UI Performance] 页面加载时间: ${loadTime.toFixed(2)}ms`);
+            
+            if (window.agui) {
+                window.agui.analytics.track('page_loaded', {
+                    loadTime: loadTime,
+                    components: window.agui.getAllComponents().length,
+                    userAgent: navigator.userAgent
+                });
+            }
+        });
+        
+        // 页面卸载时保存分析数据
+        window.addEventListener('beforeunload', () => {
+            if (window.agui) {
+                const analytics = window.agui.getAnalytics();
+                console.log('[AG-UI] 会话分析数据:', analytics);
+                // 这里可以发送到分析服务器
+            }
+        });
+    </script>
+    
+</body>
+</html>

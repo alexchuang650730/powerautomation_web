@@ -1,0 +1,81 @@
+{
+  "test_mcp_config": {
+    "framework": "Test MCP + AG-UI",
+    "test_types": [
+      "unit_tests",
+      "integration_tests",
+      "visual_regression_tests",
+      "performance_tests",
+      "accessibility_tests"
+    ],
+    "agui_test_suite": {
+      "component_tests": [
+        {
+          "component": "navigation",
+          "tests": [
+            "registration",
+            "interaction",
+            "responsive"
+          ]
+        },
+        {
+          "component": "hero",
+          "tests": [
+            "rendering",
+            "animations",
+            "stats_display"
+          ]
+        },
+        {
+          "component": "demo-cards",
+          "tests": [
+            "grid_layout",
+            "hover_effects",
+            "video_triggers"
+          ]
+        },
+        {
+          "component": "video-modal",
+          "tests": [
+            "modal_open",
+            "video_play",
+            "modal_close",
+            "keyboard_controls"
+          ]
+        }
+      ],
+      "system_tests": [
+        {
+          "name": "agui_initialization",
+          "description": "测试AG-UI系统初始化"
+        },
+        {
+          "name": "event_system",
+          "description": "测试AG-UI事件系统"
+        },
+        {
+          "name": "analytics_tracking",
+          "description": "测试分析追踪系统"
+        }
+      ]
+    }
+  },
+  "test_execution": {
+    "parallel_execution": false,
+    "retry_failed_tests": true,
+    "max_retries": 3,
+    "screenshot_on_failure": true,
+    "detailed_logging": true
+  },
+  "reporting": {
+    "generate_html_report": true,
+    "include_screenshots": true,
+    "include_performance_metrics": true,
+    "include_agui_analytics": true,
+    "export_formats": [
+      "json",
+      "html",
+      "xml"
+    ]
+  }
+}

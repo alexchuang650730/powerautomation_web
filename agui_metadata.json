@@ -1,0 +1,102 @@
+{
+  "agui_version": "4.0",
+  "framework": "PowerAutomation",
+  "generated_at": "2025-07-09T05:00:10.194841",
+  "generator": "StandaloneAGUIGenerator",
+  "components": [
+    {
+      "name": "navigation",
+      "type": "AGUIComponent",
+      "complexity": "medium",
+      "features": [
+        "smooth_scroll",
+        "responsive",
+        "gradient_logo",
+        "colorful_buttons"
+      ],
+      "data_attributes": [
+        "data-agui-component",
+        "data-agui-action",
+        "data-agui-version"
+      ]
+    },
+    {
+      "name": "hero",
+      "type": "AGUIComponent",
+      "complexity": "medium",
+      "features": [
+        "gradient_text",
+        "stats_grid",
+        "responsive",
+        "fade_animations"
+      ],
+      "data_attributes": [
+        "data-agui-element",
+        "data-agui-component"
+      ]
+    },
+    {
+      "name": "demo-cards",
+      "type": "AGUIComponent",
+      "complexity": "complex",
+      "features": [
+        "video_integration",
+        "hover_effects",
+        "grid_layout",
+        "featured_card"
+      ],
+      "data_attributes": [
+        "data-agui-element",
+        "data-agui-action",
+        "data-demo-type"
+      ]
+    },
+    {
+      "name": "video-modal",
+      "type": "AGUIComponent",
+      "complexity": "advanced",
+      "features": [
+        "modal_overlay",
+        "video_player",
+        "keyboard_controls",
+        "event_tracking",
+        "backdrop_blur"
+      ],
+      "data_attributes": [
+        "data-agui-component",
+        "data-agui-element",
+        "data-agui-action"
+      ]
+    }
+  ],
+  "agui_features": [
+    "component_registration",
+    "event_system",
+    "scroll_animations",
+    "performance_monitoring",
+    "analytics_tracking",
+    "responsive_design",
+    "accessibility_support",
+    "video_modal_system"
+  ],
+  "testing": {
+    "stagewise_compatible": true,
+    "test_mcp_ready": true,
+    "visual_testing_enabled": true,
+    "component_isolation": true,
+    "event_tracking": true
+  },
+  "performance": {
+    "lazy_loading": false,
+    "responsive_design": true,
+    "accessibility": true,
+    "smooth_animations": true,
+    "optimized_css": true
+  },
+  "browser_support": {
+    "modern_browsers": true,
+    "mobile_responsive": true,
+    "touch_support": true,
+    "keyboard_navigation": true
+  }
+}

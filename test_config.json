@@ -1,0 +1,71 @@
+{
+  "test_framework": "AG-UI + Stagewise MCP",
+  "test_types": [
+    "component_isolation",
+    "visual_regression",
+    "interaction_testing",
+    "performance_testing",
+    "accessibility_testing"
+  ],
+  "test_scenarios": [
+    {
+      "name": "navigation_test",
+      "description": "测试导航栏功能和平滑滚动",
+      "steps": [
+        "点击功能特性按钮",
+        "验证平滑滚动到对应区域",
+        "检查按钮悬停效果"
+      ],
+      "expected": "平滑滚动正常，悬停效果正确"
+    },
+    {
+      "name": "video_modal_test",
+      "description": "测试视频模态框功能",
+      "steps": [
+        "点击演示卡片的观看演示按钮",
+        "验证模态框打开",
+        "验证视频加载",
+        "测试ESC键关闭",
+        "测试点击遮罩关闭"
+      ],
+      "expected": "模态框正常打开关闭，视频正常播放"
+    },
+    {
+      "name": "responsive_test",
+      "description": "测试响应式设计",
+      "steps": [
+        "调整浏览器窗口大小",
+        "验证移动端布局",
+        "检查触摸交互"
+      ],
+      "expected": "在不同屏幕尺寸下布局正确"
+    },
+    {
+      "name": "animation_test",
+      "description": "测试AG-UI动画效果",
+      "steps": [
+        "滚动页面",
+        "验证淡入动画",
+        "检查悬停动画"
+      ],
+      "expected": "所有动画流畅自然"
+    }
+  ],
+  "agui_specific_tests": [
+    {
+      "name": "component_registration",
+      "description": "验证AG-UI组件正确注册",
+      "validation": "window.agui.getAllComponents().length >= 4"
+    },
+    {
+      "name": "event_tracking",
+      "description": "验证事件追踪系统",
+      "validation": "window.agui.getAnalytics().length > 0"
+    },
+    {
+      "name": "data_attributes",
+      "description": "验证AG-UI数据属性",
+      "validation": "document.querySelectorAll('[data-agui-component]').length >= 4"
+    }
+  ]
+}

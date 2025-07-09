@@ -1,0 +1,243 @@
+{
+  "test_session": {
+    "id": "agui_test_20250709_050200",
+    "name": "AG-UI PowerAutomation Website Test",
+    "description": "使用Stagewise MCP测试AG-UI重构的PowerAutomation网站",
+    "created_at": "2025-07-09T05:02:00.499418",
+    "website_url": "file:///home/ubuntu/agui_powerautomation_website/index.html",
+    "framework": "AG-UI 4.0 + Stagewise MCP"
+  },
+  "test_environment": {
+    "browser": "chromium",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
+    "timeout": 30000,
+    "wait_for_load": true,
+    "enable_javascript": true
+  },
+  "agui_specific": {
+    "wait_for_agui_init": true,
+    "track_component_registration": true,
+    "monitor_event_system": true,
+    "validate_data_attributes": true,
+    "check_performance_metrics": true
+  },
+  "test_scenarios": [
+    {
+      "id": "agui_component_registration",
+      "name": "AG-UI组件注册测试",
+      "description": "验证所有AG-UI组件正确注册到系统中",
+      "type": "javascript_validation",
+      "steps": [
+        "打开网站首页",
+        "等待AG-UI系统初始化",
+        "验证window.agui对象存在",
+        "检查组件注册数量",
+        "验证组件类型正确"
+      ],
+      "validation_script": "\n                    // 验证AG-UI系统初始化\n                    if (!window.agui) {\n                        throw new Error('AG-UI系统未初始化');\n                    }\n                    \n                    // 验证组件注册\n                    const components = window.agui.getAllComponents();\n                    if (components.length < 4) {\n                        throw new Error(`组件注册不足，期望4个，实际${components.length}个`);\n                    }\n                    \n                    // 验证组件类型\n                    const expectedTypes = ['navigation', 'hero', 'demo-cards', 'video-modal'];\n                    const actualTypes = components.map(c => c.type);\n                    \n                    for (const type of expectedTypes) {\n                        if (!actualTypes.includes(type)) {\n                            throw new Error(`缺失组件类型: ${type}`);\n                        }\n                    }\n                    \n                    return {\n                        success: true,\n                        components: components.length,\n                        types: actualTypes\n                    };\n                ",
+      "expected_result": {
+        "success": true,
+        "components": 4,
+        "types": [
+          "navigation",
+          "hero",
+          "demo-cards",
+          "video-modal"
+        ]
+      }
+    },
+    {
+      "id": "agui_navigation_interaction",
+      "name": "AG-UI导航交互测试",
+      "description": "测试导航栏的平滑滚动和悬停效果",
+      "type": "interaction_test",
+      "steps": [
+        "定位导航栏按钮",
+        "测试悬停效果",
+        "点击功能特性按钮",
+        "验证平滑滚动",
+        "检查页面位置"
+      ],
+      "selectors": {
+        "nav_features": ".nav-link.features-link",
+        "nav_demos": ".nav-link.demos-link",
+        "nav_pricing": ".nav-link.pricing-link",
+        "nav_contact": ".nav-link.contact-link"
+      },
+      "interactions": [
+        {
+          "action": "hover",
+          "selector": ".nav-link.features-link"
+        },
+        {
+          "action": "click",
+          "selector": ".nav-link.demos-link"
+        },
+        {
+          "action": "wait",
+          "duration": 1000
+        },
+        {
+          "action": "verify_scroll",
+          "target": "#demos"
+        }
+      ]
+    },
+    {
+      "id": "agui_video_modal_functionality",
+      "name": "AG-UI视频模态框功能测试",
+      "description": "测试视频模态框的打开、播放和关闭功能",
+      "type": "modal_test",
+      "steps": [
+        "点击演示卡片的观看演示按钮",
+        "验证模态框打开",
+        "检查视频源设置",
+        "测试ESC键关闭",
+        "测试点击遮罩关闭",
+        "验证事件追踪"
+      ],
+      "selectors": {
+        "demo_button": "[data-agui-action='play-video']",
+        "video_modal": "#videoModal",
+        "modal_close": ".modal-close",
+        "modal_overlay": ".modal-overlay",
+        "video_element": ".modal-video"
+      },
+      "interactions": [
+        {
+          "action": "click",
+          "selector": "[data-agui-action='play-video']"
+        },
+        {
+          "action": "wait",
+          "duration": 500
+        },
+        {
+          "action": "verify_visible",
+          "selector": "#videoModal.active"
+        },
+        {
+          "action": "key_press",
+          "key": "Escape"
+        },
+        {
+          "action": "verify_hidden",
+          "selector": "#videoModal.active"
+        }
+      ]
+    },
+    {
+      "id": "agui_responsive_design",
+      "name": "AG-UI响应式设计测试",
+      "description": "测试不同屏幕尺寸下的布局适应性",
+      "type": "responsive_test",
+      "steps": [
+        "设置桌面视口",
+        "验证桌面布局",
+        "切换到移动视口",
+        "验证移动布局",
+        "测试触摸交互"
+      ],
+      "viewports": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "name": "desktop"
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "name": "tablet"
+        },
+        {
+          "width": 375,
+          "height": 667,
+          "name": "mobile"
+        }
+      ],
+      "responsive_checks": [
+        {
+          "viewport": "desktop",
+          "selector": ".hero-stats",
+          "expected": "grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))"
+        },
+        {
+          "viewport": "mobile",
+          "selector": ".hero-stats",
+          "expected": "grid-template-columns: repeat(2, 1fr)"
+        }
+      ]
+    },
+    {
+      "id": "agui_animation_performance",
+      "name": "AG-UI动画性能测试",
+      "description": "测试滚动动画和悬停效果的性能",
+      "type": "performance_test",
+      "steps": [
+        "监控页面加载性能",
+        "测试滚动动画触发",
+        "监控动画帧率",
+        "检查内存使用",
+        "验证动画流畅度"
+      ],
+      "performance_metrics": [
+        "page_load_time",
+        "animation_frame_rate",
+        "memory_usage",
+        "scroll_performance"
+      ]
+    },
+    {
+      "id": "agui_event_tracking",
+      "name": "AG-UI事件追踪测试",
+      "description": "验证AG-UI事件追踪系统正常工作",
+      "type": "analytics_test",
+      "steps": [
+        "触发各种用户交互",
+        "验证事件记录",
+        "检查分析数据格式",
+        "验证事件时间戳",
+        "测试数据完整性"
+      ],
+      "tracked_events": [
+        "agui_system_initialized",
+        "page_loaded",
+        "navigation_click",
+        "video_modal_opened",
+        "video_modal_closed",
+        "element_visible"
+      ]
+    }
+  ],
+  "recording_options": {
+    "record_interactions": true,
+    "capture_screenshots": true,
+    "record_network": false,
+    "record_console": true,
+    "record_performance": true
+  },
+  "validation_rules": {
+    "agui_system_required": true,
+    "min_components": 4,
+    "required_component_types": [
+      "navigation",
+      "hero",
+      "demo-cards",
+      "video-modal"
+    ],
+    "required_data_attributes": [
+      "data-agui-component",
+      "data-agui-element",
+      "data-agui-action"
+    ],
+    "performance_thresholds": {
+      "page_load_time": 3000,
+      "animation_frame_rate": 30,
+      "memory_usage_mb": 100
+    }
+  }
+}
